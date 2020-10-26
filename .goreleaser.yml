@@ -1,0 +1,138 @@
+# This is an example goreleaser.yaml file with some sane defaults.
+# Make sure to check the documentation at http://goreleaser.com
+project_name: cheat
+before:
+  hooks:
+    - go mod download
+    - go run hack/packr/packr.go
+builds:
+  - env:
+      - CGO_ENABLED=0
+    goos:
+      - linux
+      - windows
+      - darwin
+      - freebsd
+      - openbsd
+    goarch:
+      - 386
+      - amd64
+      - arm
+      - arm64
+      - ppc64
+      - ppc64le
+    goarm:
+      - 6
+      - 7
+    flags:
+      - '-tags="netgo osusergo"'
+    ldflags:
+      - '-s'
+      - '-w'
+      - '-X serve.go.version={{.Version}}'
+      - '-X serve.go.commitHash={{.Commit}}'
+      - '-X serve.go.mode=prod'
+archives:
+  - files:
+      - LICENSE
+      - README.md
+      - cheat.config.example
+    replacements:
+      386: i386
+    format_overrides:
+      - goos: windows
+        format: zip
+checksum:
+changelog:
+  skip: true
+dockers:
+  - goos: linux
+    goarch: amd64
+    goarm: ''
+    binaries:
+      - cheat
+    image_templates:
+      - "newtorn/cheat:amd64-unstable"
+      - "newtorn/cheat:amd64-{{ .RawVersion }}"
+      - "newtorn/cheat:amd64-{{ .Major }}"
+    dockerfile: Dockerfile
+    build_flag_templates:
+      - "--label=org.opencontainers.image.created={{.Date}}"
+      - "--label=org.opencontainers.image.title={{.ProjectName}}"
+      - "--label=org.opencontainers.image.revision={{.FullCommit}}"
+      - "--label=org.opencontainers.image.version={{.Version}}"
+  - goos: linux
+    goarch: 386
+    binaries:
+      - cheat
+    goarm: ''
+    image_templates:
+      - "newtorn/cheat:386-unstable"
+      - "newtorn/cheat:386-{{ .RawVersion }}"
+      - "newtorn/cheat:386-{{ .Major }}"
+    dockerfile: Dockerfile
+    build_flag_templates:
+      - "--label=org.opencontainers.image.created={{.Date}}"
+      - "--label=org.opencontainers.image.title={{.ProjectName}}"
+      - "--label=org.opencontainers.image.revision={{.FullCommit}}"
+      - "--label=org.opencontainers.image.version={{.Version}}"
+  - goos: linux
+    goarch: arm64
+    goarm: ''
+    binaries:
+      - cheat
+    image_templates:
+      - "newtorn/cheat:arm64-unstable"
+      - "newtorn/cheat:arm64-{{ .RawVersion }}"
+      - "newtorn/cheat:arm64-{{ .Major }}"
+    dockerfile: Dockerfile
+    build_flag_templates:
+      - "--label=org.opencontainers.image.created={{.Date}}"
+      - "--label=org.opencontainers.image.title={{.ProjectName}}"
+      - "--label=org.opencontainers.image.revision={{.FullCommit}}"
+      - "--label=org.opencontainers.image.version={{.Version}}"
+  - goos: linux
+    goarch: arm
+    goarm: 7
+    binaries:
+      - cheat
+    image_templates:
+      - "newtorn/cheat:armv7-unstable"
+      - "newtorn/cheat:armv7-{{ .RawVersion }}"
+      - "newtorn/cheat:armv7-{{ .Major }}"
+    dockerfile: Dockerfile
+    build_flag_templates:
+      - "--label=org.opencontainers.image.created={{.Date}}"
+      - "--label=org.opencontainers.image.title={{.ProjectName}}"
+      - "--label=org.opencontainers.image.revision={{.FullCommit}}"
+      - "--label=org.opencontainers.image.version={{.Version}}"
+  - goos: linux
+    goarch: arm
+    goarm: 6
+    binaries:
+      - cheat
+    image_templates:
+      - "newtorn/cheat:armv6-unstable"
+      - "newtorn/cheat:armv6-{{ .RawVersion }}"
+      - "newtorn/cheat:armv6-{{ .Major }}"
+    dockerfile: Dockerfile
+    build_flag_templates:
+      - "--label=org.opencontainers.image.created={{.Date}}"
+      - "--label=org.opencontainers.image.title={{.ProjectName}}"
+      - "--label=org.opencontainers.image.revision={{.FullCommit}}"
+      - "--label=org.opencontainers.image.version={{.Version}}"
+  - goos: linux
+    goarch: ppc64le
+    goarm: ''
+    binaries:
+      - cheat
+    image_templates:
+      - "newtorn/cheat:ppc64le-unstable"
+      - "newtorn/cheat:ppc64le-{{ .RawVersion }}"
+      - "newtorn/cheat:ppc64le-{{ .Major }}"
+    dockerfile: Dockerfile
+    build_flag_templates:
+      - "--label=org.opencontainers.image.created={{.Date}}"
+      - "--label=org.opencontainers.image.title={{.ProjectName}}"
+      - "--label=org.opencontainers.image.revision={{.FullCommit}}"
+      - "--label=org.opencontainers.image.version={{.Version}}"
