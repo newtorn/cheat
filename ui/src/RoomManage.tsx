@@ -146,8 +146,7 @@ export const RoomManage = ({room, config}: {room: FCreateRoom; config: UseConfig
                 </Paper>
             </Grid>
             <div style={{position: 'absolute', margin: '0 auto', bottom: 0}}>
-                Cheat {config.version} |{' '}
-                <Link href="https://github.com/newtorn/cheat">GITHUB</Link>
+                Cheat {config.version} | <Link href="https://github.com/newtorn/cheat">GITHUB</Link>
             </div>
         </Grid>
     );

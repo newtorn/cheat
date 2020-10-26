@@ -28,7 +28,7 @@
   "scripts": {
     "start": "react-scripts start",
     "format": "prettier \"src/**/*.{ts,tsx}\" --write",
-    "testformat": "prettier \"src/**/*.{ts,tsx}\" --list-different",
+    "testformat": "prettier \"src/**/*.{ts,tsx}\" -l",
     "build": "react-scripts --max-old-space-size=3000 build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
