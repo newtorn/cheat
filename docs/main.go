@@ -12,5 +12,5 @@ var (
 func main()  {
 	http.Handle("/docs/", http.StripPrefix("/docs/", http.FileServer(http.Dir("docs"))))
 	log.Println("Cheat docs server startup...")
-	http.ListenAndServe(docsAddr,nil)
+	log.Println(http.ListenAndServe(docsAddr, nil))
 }
