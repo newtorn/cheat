@@ -26,7 +26,7 @@ jobs:
       - run: (cd ui && yarn)
       - run: (cd ui && yarn build)
       - run: (cd ui && yarn testformat)
-      - uses: golangci/golangci-lint-action@v2
+      - uses: golangci/golangci-lint-action@v2c
         with:
           version: v1.31
       - run: go build ./...

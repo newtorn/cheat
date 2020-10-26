@@ -23,3 +23,6 @@ docker-manifest-push:
 	${DOCKER_MANIFEST} push "newtorn/cheat:${VERSION}"
 	${DOCKER_MANIFEST} push "newtorn/cheat:unstable"
 
+
+build-dev:
+	@bash ./scripts/build.sh
