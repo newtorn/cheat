@@ -43,6 +43,6 @@ cp cheat-start.sh $OUTPUT
 # append '[ alt_names ]\nDNS.1 = 47.100.243.137' (echo '[ alt_names ]\nDNS.1 = 47.100.243.137' >> ./ssl/openssl.cnf)
 # cp /usr/local/etc/openssl/openssl.cnf ./ssl/
 # (cd ssl && openssl req -sha256 -new -nodes -x509 -out server.crt -keyout server.key -days 3650 -subj "/C=CN/ST=SH/L=SH/O=newtorn/OU=newtorn Software/CN=127.0.0.1/emailAddress=codertorn@gmail.com" -config ./ssl/openssl.cnf -extensions v3_req)
-(cd ssl && openssl req -sha256 -new -nodes -x509 -out server.crt -keyout server.key -days 3650 -subj "/C=CN/ST=SH/L=SH/O=newtorn/OU=newtorn Software/CN=127.0.0.1/emailAddress=codertorn@gmail.com")
+(mkdir -p && cd ssl && openssl req -sha256 -new -nodes -x509 -out server.crt -keyout server.key -days 3650 -subj "/C=CN/ST=SH/L=SH/O=newtorn/OU=newtorn Software/CN=127.0.0.1/emailAddress=codertorn@gmail.com")
 cp -r ssl $OUTPUT/ssl
 
